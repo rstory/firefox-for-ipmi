@@ -1,6 +1,6 @@
 FROM debian:9 
-RUN apt-get update 
-RUN apt-get -y upgrade 
+RUN apt-get update
+RUN apt-get -y upgrade
 RUN apt-get -y install wget bzip2 sudo
 RUN dpkg --add-architecture i386
 RUN apt-get update
@@ -19,7 +19,7 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/developer && \
     chown ${uid}:${gid} -R /home/developer
 COPY java.policy.global /opt/jre1.8.0_211/lib/security/java.policy
-USER developer 
+USER developer
 RUN mkdir -p /home/developer/.mozilla/plugins
 RUN ln -s /opt/jre1.8.0_211/lib/i386/libnpjp2.so /home/developer/.mozilla/plugins/libnpjp2.so
 RUN mkdir -p /home/developer/.java/deployment/security
@@ -28,4 +28,4 @@ COPY exception.sites /home/developer/.java/deployment/security/exception.sites
 ENV HOME /home/developer
 ENV JAVA_HOME /opt/jre1.8.0_211
 ENV PATH /opt/jre1.8.0_211/bin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-CMD /opt/firefox/firefox 
+CMD /opt/firefox/firefox
